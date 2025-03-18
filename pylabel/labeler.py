@@ -203,7 +203,8 @@ class Labeler:
             )
             dataset.df.reset_index(drop=True, inplace=True)
 
-            dataset.df = dataset.df.append(widget_output).reset_index(drop=True)
+            #dataset.df = dataset.df.append(widget_output).reset_index(drop=True)
+            dataset.df = pd.concat([dataset.df, widget_output]).reset_index(drop=True)
 
             # move on to the next file
             on_next(b)
