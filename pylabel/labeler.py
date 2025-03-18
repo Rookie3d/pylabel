@@ -151,12 +151,12 @@ class Labeler:
 
                 widget_output.loc[0] = [
                     "",
-                    np.NaN,
-                    np.NaN,
-                    np.NaN,
-                    np.NaN,
-                    np.NaN,
-                    np.NaN,
+                    np.nan,
+                    np.nan,
+                    np.nan,
+                    np.nan,
+                    np.nan,
+                    np.nan,
                 ]
 
             widget_output["img_filename"] = str(img_filename)
@@ -214,7 +214,11 @@ class Labeler:
 
             file_index += 1
             # open new image in the widget
-            image_file = file_paths[file_index]
+            try:
+                image_file = file_paths[file_index]
+            except:
+                file_index -= 1
+                image_file = file_paths[file_index]
             w_bbox.image = encode_image(image_file)
             w_bbox.bboxes = GetBBOXs(files[file_index])
             progress_label.value = f"{file_index+1} / {len(files)}"
